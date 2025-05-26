@@ -51,18 +51,18 @@
             pointer-events: none; /* Make them unclickable */
         }
         .svg-top-left {
-            top: -30px; /* Adjusted for better placement */
-            left: -30px; /* Adjusted for better placement */
-            width: 160px; /* Slightly larger */
-            height: 160px;
+            top: -20px;
+            left: -20px;
+            width: 150px;
+            height: 150px;
             transform: rotate(-30deg);
             color: var(--color-accent-light); /* Use a light accent color */
         }
         .svg-bottom-right {
-            bottom: -30px; /* Adjusted for better placement */
-            right: -30px; /* Adjusted for better placement */
-            width: 190px; /* Slightly larger */
-            height: 190px;
+            bottom: -20px;
+            right: -20px;
+            width: 180px;
+            height: 180px;
             transform: rotate(120deg);
             color: var(--color-accent-light);
         }
@@ -362,11 +362,11 @@
 </head>
 <body class="p-6 sm:p-8 md:p-12">
     <div class="max-w-4xl mx-auto container-card">
-        <svg class="svg-accent svg-top-left" viewBox="0 0 100 100" fill="currentColor">
-            <path d="M50 0 C25 0, 0 25, 0 50 C0 75, 25 100, 50 100 C75 100, 100 75, 100 50 C100 25, 75 0, 50 0 Z M50 20 C66.5 20, 80 33.5, 80 50 C80 66.5, 66.5 80, 50 80 C33.5 80, 20 66.5, 20 50 C20 33.5, 33.5 20, 50 20 Z" />
+        <svg class="svg-accent svg-top-left" viewBox="0 0 200 200" fill="currentColor">
+            <path d="M100 0C44.77 0 0 44.77 0 100s44.77 100 100 100 100-44.77 100-100S155.23 0 100 0zm0 180c-44.11 0-80-35.89-80-80s35.89-80 80-80 80 35.89 80 80-35.89 80-80 80zM100 20c-44.11 0-80 35.89-80 80s35.89 80 80 80 80-35.89 80-80-35.89-80-80-80zM100 40c-33.14 0-60 26.86-60 60s26.86 60 60 60 60-26.86 60-60-26.86-60-60-60zM100 60c-22.09 0-40 17.91-40 40s17.91 40 40 40 40-17.91 40-40-17.91-40-40-40zM100 80c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20z"/>
         </svg>
-        <svg class="svg-accent svg-bottom-right" viewBox="0 0 100 100" fill="currentColor">
-            <path d="M50 0 C25 0, 0 25, 0 50 C0 75, 25 100, 50 100 C75 100, 100 75, 100 50 C100 25, 75 0, 50 0 Z M50 20 C66.5 20, 80 33.5, 80 50 C80 66.5, 66.5 80, 50 80 C33.5 80, 20 66.5, 20 50 C20 33.5, 33.5 20, 50 20 Z" />
+        <svg class="svg-accent svg-bottom-right" viewBox="0 0 200 200" fill="currentColor">
+            <path d="M100 0C44.77 0 0 44.77 0 100s44.77 100 100 100 100-44.77 100-100S155.23 0 100 0zm0 180c-44.11 0-80-35.89-80-80s35.89-80 80-80 80 35.89 80 80-35.89 80-80 80zM100 20c-44.11 0-80 35.89-80 80s35.89 80 80 80 80-35.89 80-80-35.89-80-80-80zM100 40c-33.14 0-60 26.86-60 60s26.86 60 60 60 60-26.86 60-60-26.86-60-60-60zM100 60c-22.09 0-40 17.91-40 40s17.91 40 40 40 40-17.91 40-40-17.91-40-40-40zM100 80c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20z"/>
         </svg>
 
         <h1 class="text-4xl sm:text-5xl font-bold text-center mb-8" style="color: var(--color-text-dark);">Casa Zia Complementary Breakfast</h1>
@@ -634,7 +634,9 @@
             orderMessage += `*Breakfast Order Details:*%0A`;
 
             cart.forEach(item => {
-                orderMessage += `${encodeURIComponent(item.name)} x ${item.quantity}${item.description ? ` (${item.description})` : ''}%0A`;
+                // Only include description if quantity is 1
+                const descriptionText = (item.quantity === 1 && item.description) ? ` (${item.description})` : '';
+                orderMessage += `${encodeURIComponent(item.name)} x ${item.quantity}${descriptionText}%0A`;
             });
 
             orderMessage += `%0A_Please prepare this order as per guest preference._`;
