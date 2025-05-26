@@ -46,24 +46,26 @@
         /* SVG Background Elements */
         .svg-accent {
             position: absolute;
-            opacity: 0.05; /* Very subtle */
+            opacity: 0.04; /* Even more subtle, 4% opacity */
             z-index: -1; /* Place behind content */
             pointer-events: none; /* Make them unclickable */
+            /* Add filter for a slight blur to make it less sharp */
+            filter: blur(0.5px); /* A very subtle blur */
         }
         .svg-top-left {
             top: -20px;
             left: -20px;
-            width: 150px;
-            height: 150px;
-            transform: rotate(-30deg);
+            width: 180px; /* Slightly larger */
+            height: 180px; /* Slightly larger */
+            transform: rotate(-20deg); /* Slightly less rotation */
             color: var(--color-accent-light); /* Use a light accent color */
         }
         .svg-bottom-right {
             bottom: -20px;
             right: -20px;
-            width: 180px;
-            height: 180px;
-            transform: rotate(120deg);
+            width: 200px; /* Slightly larger */
+            height: 200px; /* Slightly larger */
+            transform: rotate(140deg); /* Different rotation */
             color: var(--color-accent-light);
         }
 
@@ -362,12 +364,13 @@
 </head>
 <body class="p-6 sm:p-8 md:p-12">
     <div class="max-w-4xl mx-auto container-card">
-        <svg class="svg-accent svg-top-left" viewBox="0 0 200 200" fill="currentColor">
-            <path d="M100 0C44.77 0 0 44.77 0 100s44.77 100 100 100 100-44.77 100-100S155.23 0 100 0zm0 180c-44.11 0-80-35.89-80-80s35.89-80 80-80 80 35.89 80 80-35.89 80-80 80zM100 20c-44.11 0-80 35.89-80 80s35.89 80 80 80 80-35.89 80-80-35.89-80-80-80zM100 40c-33.14 0-60 26.86-60 60s26.86 60 60 60 60-26.86 60-60-26.86-60-60-60zM100 60c-22.09 0-40 17.91-40 40s17.91 40 40 40 40-17.91 40-40-17.91-40-40-40zM100 80c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20z"/>
+        <svg class="svg-accent svg-top-left" viewBox="0 0 512 512" fill="currentColor">
+            <path d="M497.3 227.1L277.6 15.7c-9.4-9.4-24.6-9.4-33.9 0l-219.7 211c-9.4 9.4-9.4 24.6 0 33.9l219.7 211c9.4 9.4 24.6 9.4 33.9 0L497.3 261c9.4-9.4 9.4-24.6 0-33.9zM256 461.3L37.3 256 256 50.7 474.7 256 256 461.3zM256 32c-13.8 0-25 11.2-25 25v45c0 13.8 11.2 25 25 25s25-11.2 25-25V57c0-13.8-11.2-25-25-25zM256 480c13.8 0 25-11.2 25-25v-45c0-13.8-11.2-25-25-25s-25 11.2-25 25v45c0 13.8 11.2 25 25 25zM480 256c0 13.8-11.2 25-25 25h-45c-13.8 0-25-11.2-25-25s11.2-25 25-25h45c13.8 0 25 11.2 25 25zM57 256c0-13.8 11.2-25 25-25h45c13.8 0 25 11.2 25 25s-11.2 25-25 25H82c-13.8 0-25-11.2-25-25z"/>
         </svg>
-        <svg class="svg-accent svg-bottom-right" viewBox="0 0 200 200" fill="currentColor">
-            <path d="M100 0C44.77 0 0 44.77 0 100s44.77 100 100 100 100-44.77 100-100S155.23 0 100 0zm0 180c-44.11 0-80-35.89-80-80s35.89-80 80-80 80 35.89 80 80-35.89 80-80 80zM100 20c-44.11 0-80 35.89-80 80s35.89 80 80 80 80-35.89 80-80-35.89-80-80-80zM100 40c-33.14 0-60 26.86-60 60s26.86 60 60 60 60-26.86 60-60-26.86-60-60-60zM100 60c-22.09 0-40 17.91-40 40s17.91 40 40 40 40-17.91 40-40-17.91-40-40-40zM100 80c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20z"/>
+        <svg class="svg-accent svg-bottom-right" viewBox="0 0 512 512" fill="currentColor">
+            <path d="M497.3 227.1L277.6 15.7c-9.4-9.4-24.6-9.4-33.9 0l-219.7 211c-9.4 9.4-9.4 24.6 0 33.9l219.7 211c9.4 9.4 24.6 9.4 33.9 0L497.3 261c9.4-9.4 9.4-24.6 0-33.9zM256 461.3L37.3 256 256 50.7 474.7 256 256 461.3zM256 32c-13.8 0-25 11.2-25 25v45c0 13.8 11.2 25 25 25s25-11.2 25-25V57c0-13.8-11.2-25-25-25zM256 480c13.8 0 25-11.2 25-25v-45c0-13.8-11.2-25-25-25s-25 11.2-25 25v45c0 13.8 11.2 25 25 25zM480 256c0 13.8-11.2 25-25 25h-45c-13.8 0-25-11.2-25-25s11.2-25 25-25h45c13.8 0 25 11.2 25 25zM57 256c0-13.8 11.2-25 25-25h45c13.8 0 25 11.2 25 25s-11.2 25-25 25H82c-13.8 0-25-11.2-25-25z"/>
         </svg>
+
 
         <h1 class="text-4xl sm:text-5xl font-bold text-center mb-8" style="color: var(--color-text-dark);">Casa Zia Complementary Breakfast</h1>
         <p class="text-center text-xl mb-10" style="color: var(--color-text-medium);">A delightful start to your day, on us!</p>
