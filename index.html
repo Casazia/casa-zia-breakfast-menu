@@ -254,7 +254,7 @@
             <ul class="list-disc list-inside text-gray-700 space-y-1">
                 <li>Please select your breakfast choices below.</li>
                 <li>Your order will be prepared fresh and served directly to your room.</li>
-                <li>To ensure timely delivery, please place your breakfast order by <strong class="text-[#4a2c0f]">10:00 PM the previous night</strong> or by <strong class="text-[#4a2c0f]">8:00 AM on the day of breakfast</strong>.</li>
+                <li>To ensure timely delivery, please place your breakfast order by <strong class="text-[#4a2c0f]">9:00 PM the previous night</strong>.</li>
             </ul>
         </div>
 
@@ -303,6 +303,16 @@
                         <option value="Stargazing Suite">Stargazing Suite</option>
                     </select>
                 </div>
+                <div>
+                    <label for="serving-time" class="block text-sm font-medium text-gray-700">Preferred Serving Time:</label>
+                    <select id="serving-time" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-[#e0c29f] focus:border-[#e0c29f]" required>
+                        <option value="" disabled selected>Select Time Slot</option>
+                        <option value="8:30 AM - 9:00 AM">8:30 AM - 9:00 AM</option>
+                        <option value="9:00 AM - 9:30 AM">9:00 AM - 9:30 AM</option>
+                        <option value="9:30 AM - 10:00 AM">9:30 AM - 10:00 AM</option>
+                        <option value="10:00 AM - 10:30 AM">10:00 AM - 10:30 AM</option>
+                    </select>
+                </div>
             </div>
 
             <button onclick="placeOrder()" class="w-full bg-[#22c55e] text-white py-3 rounded-md font-bold text-lg hover:bg-[#16a34a] transition-colors shadow-md">
@@ -324,7 +334,7 @@
             { id: 'upma', name: "Upma", description: "1 serving", type: "veg" },
             { id: 'kichadi', name: "Kichadi", description: "1 serving", type: "veg" },
             { id: 'pongal', name: "Pongal", description: "1 serving", type: "veg" },
-            { id: 'vada', name: "Vada", description: "1 piece", type: "veg" },
+            { id: 'medhu_vada', name: "Medhu Vada", description: "1 piece", type: "veg" }, // Changed from Vada
             { id: 'coffee', name: "Coffee", description: "1 serving", type: "veg" }
         ];
 
@@ -474,6 +484,7 @@
         function placeOrder() {
             const guestName = document.getElementById('guest-name').value.trim();
             const roomNumber = document.getElementById('room-number').value.trim();
+            const servingTime = document.getElementById('serving-time').value.trim(); // Get selected serving time
 
             if (cart.length === 0) {
                 showTemporaryMessage('Your order is empty. Please add items before confirming.', 'red');
@@ -489,10 +500,16 @@
                 document.getElementById('room-number').focus();
                 return;
             }
+            if (!servingTime || servingTime === 'Select Time Slot') { // Validate serving time
+                showTemporaryMessage('Please select a Preferred Serving Time.', 'red');
+                document.getElementById('serving-time').focus();
+                return;
+            }
 
             let orderMessage = `*New Breakfast Order from Casa Zia!*%0A%0A`;
             orderMessage += `*Guest:* ${encodeURIComponent(guestName)}%0A`;
-            orderMessage += `*Room:* ${encodeURIComponent(roomNumber)}%0A%0A`;
+            orderMessage += `*Room:* ${encodeURIComponent(roomNumber)}%0A`;
+            orderMessage += `*Preferred Serving Time:* ${encodeURIComponent(servingTime)}%0A%0A`; // Add serving time
             orderMessage += `*Breakfast Order Details:*%0A`;
 
             cart.forEach(item => {
@@ -508,6 +525,7 @@
             cart = [];
             document.getElementById('guest-name').value = '';
             document.getElementById('room-number').value = ''; // Reset select to default option
+            document.getElementById('serving-time').value = ''; // Reset serving time select
             updateCartDisplay();
             closeCartModal();
             // Re-render the menu to reset all quantity controls to 'Add'
